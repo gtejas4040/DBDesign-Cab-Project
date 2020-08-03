@@ -1,0 +1,73 @@
+
+CREATE OR REPLACE FUNCTION my_to_date( p_str IN DATE, p_format IN VARCHAR2 )
+  RETURN date
+IS
+BEGIN
+  RETURN to_date( p_str, p_format );
+EXCEPTION
+  WHEN others
+  THEN
+    RETURN NULL;
+END;
+
+
+
+
+---***TRIES***---------------------------------------------------------------------------
+--- Triggers  ---
+/* Trigger for DL Expiry */
+
+create or replace trigger renew
+before insert or update
+on Driver for each row
+declare
+curr_date DATE
+set curr_date := (select dlexpiry from inserted); 
+begin
+if trunc(:new.dlexpiry) < trunc(curr_date) then
+    dbms_output.put_line(' HEY!! go renew!!');
+end if;
+end;
+
+alter session set nls_date_format = 'DD-MON-YYYY';
+
+employee_date_hired > to_date('31-DEC-95','DD-MON-YY')
+insert into Uberuser
+INSERT INTO DRIVER (DID, SSN, DLNO, DLEXPIRY) VALUES ('U789', '123456789', '12345678', TO_DATE('2018-12-16 15:26:22', 'YYYY-MM-DD HH24:MI:SS'));
+select * from Driver where dlexpiry<sysdate;
+
+select to_date_or_null('2000-01-01', 'YYYY-MM-DD') from dual ;
+
+
+select to_date_or_null('2000-01-01') from dual;
+
+insert into DRIVER values("U000", 1303268333, "58286320", "20-MAY-18");
+insert into DRIVER values("U000", 1303268333, "58286320", 20-MAY-18);
+insert into DRIVER values("U000", 1303268333, "58286320", "20-MAY-18");
+/* Trigger for Insurance Expiry */
+
+create or replace TRIGGER Insurance_Renewal
+before insert
+on Vehicle for each row
+when (new.insuranceexpiry < sysdate)
+begin
+dbms_output.put_line(' HEY!! go renew!!') ;
+end;
+
+dbms_output.put_line(SYSDATE);
+select * from dual;
+select trunc(sysdate) from dual; 
+insert into vehicle values ('V550',	'U012',	'Camry','Black',20-08-10,03-APR-09,	'true','Good',4,'I34567890'	,'04/03/2021','23-OCT-18');
+insert into vehicle values ("V551",	"U012",	"Camry","Black",20-08-10,03-APR-09,	"true","Good",4,"I34567890"	,"04/03/18","23-OCT-18");
+
+
+
+--trigger try
+
+update DRIVER set DLEXPIRY = '20-MAY-2010' where DID= 'U233';
+
+update VEHICLE set cpty = 3 where VID= 'V550';
+
+set serveroutput on
+
+
